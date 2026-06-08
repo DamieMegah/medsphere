@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 140" width="100%" height="100%">
+  <defs>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-opacity="0.3"/>
+    </filter>
+    
+    <style>
+      .text-assure {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        font-weight: 700;
+        fill: #00529B;
+        font-size: 52px;
+        letter-spacing: -0.5px;
+      }
+      .text-tech {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        font-weight: 400;
+        fill: #00529B;
+        font-size: 52px;
+        letter-spacing: -0.5px;
+      }
+      .orbit-ring {
+        fill: none;
+        stroke: #E31B23;
+        stroke-width: 3.5;
+        stroke-linecap: round;
+      }
+      .globe-bg {
+        fill: #00529B;
+      }
+      .globe-grid {
+        fill: none;
+        stroke: #ffffff;
+        stroke-width: 1.2;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(10, 10)">
+    <path class="orbit-ring" d="M 20,75 C 10,40 180,12 265,30 C 310,40 280,68 210,72" transform="rotate(-12, 150, 50)" />
+
+    <text x="45" y="82">
+      <tspan class="text-assure">Assur</tspan>
+      <tspan class="text-assure" dx="-2">e</tspan> 
+      <tspan class="text-tech" dx="12">Tech</tspan>
+    </text>
+
+    <g transform="translate(187, 65)" filter="url(#soft-shadow)">
+      <circle cx="12" cy="12" r="12" class="globe-bg" />
+      <path d="M 12,0 A 12,12 0 0,0 12,24 M 12,0 A 6,12 0 0,0 12,24 M 12,0 A 6,12 0 0,1 12,24 M 0,12 L 24,12 M 2,6 C 7,9 17,9 22,6 M 2,18 C 7,15 17,15 22,18" class="globe-grid" />
+    </g>
+  </g>
+</svg>

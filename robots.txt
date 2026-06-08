@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://medspherehealthcare.com/sitemap.xml
+
+# Block pages that don't need indexing
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /search-results/
+
+# Extra: Prevent duplicate parameter pages
+Disallow: /*?ref=
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=

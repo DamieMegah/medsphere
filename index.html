@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Medsphere Healthcare Ltd – Medical Equipment Sales & Servicing | Medspherehealthcare Nigeria</title>
+  <meta name="description" content="Medsphere Healthcare Ltd supplies premium medical equipment, expert servicing, and fast maintenance support across Nigeria. Get reliable lab devices, diagnostics, and professional consultation for hospitals and clinics." />
+  <meta name="keywords" content="Medsphere, medical equipment Nigeria, healthcare technology, diagnostic tools, medical equipment servicing, healthcare maintenance" />
+  <meta name="author" content="Medsphere Healthcare Ltd" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph (Facebook) -->
+  <meta property="og:title" content="Medsphere Healthcare Ltd – Medical Equipment Experts" />
+  <meta property="og:description" content="We deliver quality medical devices, maintenance, and consultation across Africa." />
+  <meta property="og:image" content="https://medspherehealthcare.com/images/logo.png" />
+  <meta property="og:url" content="https://medspherehealthcare.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Medsphere Healthcare Ltd – Medical Equipment Experts" />
+  <meta name="twitter:description" content="We deliver quality medical devices, maintenance, and consultation across Africa." />
+  <meta name="twitter:image" content="https://medspherehealthcare.com/images/logo.png" />
+
+  <link rel="icon" href="images/logo2.jpg" type="image/jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="style.css?V=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://medspherehealthcare.com/">
+  <link rel="alternate" href="https://medspherehealthcare.com/" hreflang="en-ng">
+  <meta property="article:published_time" content="2025-05-01">
+  <meta property="article:modified_time" content="2025-11-27">
+  <link rel="preload" as="image" href="images/SMT-30.jpg">
+
+
+
+
+    
+  <!-- JSON-LD -->
+      <!-- JSON-LD Schema Markup for Blog Posts (Kept for SEO) -->
+     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://medspherehealthcare.com/#organization",
+  "name": "Medsphere Healthcare Ltd",
+  "url": "https://medspherehealthcare.com",
+  "logo": "https://medspherehealthcare.com/images/logo2.jpg",
+  "description": "Leading provider of medical equipment, servicing, installation, consultation and maintenance services across Africa.",
+  
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "14, Salvation Avenue Off Lucas Street, Obawole, Ifako Ijaiye, Lagos",
+    "addressLocality": "Lagos",
+    "postalCode": "100001",
+    "addressCountry": "NG"
+  },
+
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+2347049413802",
+    "contactType": "customer service",
+    "areaServed": "NG",
+    "availableLanguage": ["en"]
+  },
+
+  "sameAs": [
+    "https://facebook.com/medsphere",
+    "https://linkedin.com/company/medsphere-healthcare",
+    "https://www.instagram.com/medsphere_healthcare_limited/"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://medspherehealthcare.com/#website",
+  "url": "https://medspherehealthcare.com",
+  "name": "Medsphere Healthcare Ltd",
+  "publisher": {
+    "@id": "https://medspherehealthcare.com/#organization"
+  },
+ "potentialAction": {
+  "@type": "SearchAction",
+  "target": "https://medspherehealthcare.com/?search={query}",
+  "query-input": "required name=query"
+ }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Medsphere Healthcare Ltd – Medical Equipment Sales & Servicing",
+  "url": "https://medspherehealthcare.com/",
+  "description": "Medsphere Healthcare Ltd supplies medical equipment, maintenance, consultation and installation services across Nigeria.",
+  "publisher": {
+    "@id": "https://medspherehealthcare.com/#organization"
+  }
+}
+</script>
+
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRK43LMR9P"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+  gtag('config', 'G-CRK43LMR9P');
+  </script>
+  </head>
+  <body>
+    <header class="navbar">
+        <div class="logo">
+           <img src="images/logo.png"   loading="lazy"  alt="medsphere healthcare limited Logo" />
+        </div>
+
+          <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search Devices or Equipments..."  oninput="filterProducts()">
+            <i class="fas fa-search"></i>
+          </div>
+
+         <div class="menu-toggle" id="menu-toggle"> 
+          <nav>
+            <div class="ham-menu">
+               <span ></span>
+               <span ></span>
+               <span ></span>
+            </div>
+          </nav>
+         </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li>
+              <a href="#services" class="about">Services <i class="fas fa-caret-down"></i>
+                 <ul class="dropdown-content">
+                     <li class="navs" onclick="goToSlide(1)"> Servicing <br> <small>Equipments servicing details</small></li>
+                     <li class="navs" onclick="goToSlide(0)">Consultation<br> <small>Expert equipments advice</small></li>
+                     <li class="navs" onclick="goToSlide(2)">Installation <br> <small>Professional installation</small></li>
+                     <li class="navs" onclick="goToSlide(2)">Maintenace <br> <small>Regular maintenance services</small></li>
+                 </ul>
+              </a>
+            </li>
+
+           <li class="product">
+    <a href="#">
+        Products <i class="fas fa-caret-down"></i>
+    </a>
+
+    <ul class="dropdown-content">
+
+        <li>
+            <a href="#product">All Products</a>
+        </li>
+
+        <li class="has-submenu">
+            <a href="#">Hematology Analyzer</a>
+
+            <ul class="dropdown-content2">
+                <li><a href="smt-30.html">Seamaty SMT-30 | 3-Part</a></li>
+                <li><a href="smt-50.html">Seamaty SMT-50 | 5-Part</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="#">Chemistry Analyzer</a>
+
+            <ul class="dropdown-content2">
+                <li><a href="smt-70.html">Seamaty SMT-70</a></li>
+                <li><a href="smt-120.html">Seamaty SMT-120</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="#">Electrolyte Analyzer</a>
+
+            <ul class="dropdown-content2">
+                <li><a href="se1.html">Seamaty SE1 – Hand Held</a></li>
+                <li><a href="cbs-50.html">CBS 50 – Automatic</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="#">Blood Gas Analyzer</a>
+
+            <ul class="dropdown-content2">
+                <li><a href="sg1.html">Seamaty SG1 – Hand Held</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="dr-accu.html">
+                Fluorescence Immunoassay Analyzer
+            </a>
+
+            <ul class="dropdown-content2">
+                <li><a href="dr-accu.html">Dr Accu</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="ua-201.html">UA-201 Urine Analyzer</a>
+        </li>
+
+        <li>
+            <a href="#">List of Consumables</a>
+        </li>
+
+    </ul>
+</li>
+                    
+                     <li class="navs"><a href="#about">About</a></li>
+                     <li class="navs"><a href="#blog">Blog</a></li>
+                     <li class="navs"><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+
+
+    <section class="hero">
+       <div class="hero-content" data-aos="fade-left" data-aos-duration="1000">
+
+       <h1>Pioneering Advancement in Healthcare Technology</h1>
+
+         <div class="hero2">
+          <p>Discover our innovative medical and lab solutions tailored for excellence.</p>
+           <div class="button">
+             <a href="#product" class="btn">Explore</a> 
+             <a href="#contact" class="btn2">Get&nbsp;in&nbsp;Touch</a>
+           </div>
+        </div>
+
+       </div>
+
+
+  
+         <div class="hero-show" >
+           <img src="images/SMT-30.jpg"  loading="eager"   alt="SMT-50 Semi Auto Analyzer Nigeria" class="active" >
+           <img src="images/hero-pic1.jpg"  loading="eager"   alt="SMT-30 Hematology Analyzer Nigeria" >
+           <img src="images/hero-pic5.avif"  loading="eager"   alt="hero-pic3" >
+           <img src="images/SMT-120 II.png"   loading="eager"  alt="SMT-120 Biochemistry Analyzer Nigeria">
+         </div>
+  
+    </section>
+
+    <section class="about-section1" id="about" >
+      <div class="about-corner"></div>
+
+
+       <div class="about-content" >
+
+         <h2>About Us </h2>
+          <p>
+           <span>MedSphere</span> Healthcare Limited is a leading provider of essential medical equipment
+            and consumables, dedicated to supporting healthcare professionals and facilities. <br>
+            We are committed to enhancing patient care through reliable, high-quality products and services. <br>
+         </p><br>
+           <p>We offer a comprehensive range of medical equipment, from diagnostic tools to surgical
+             instruments, alongside a wide selection of consumables. Our focus is on providing healthcare
+             products from trusted manufacturers, ensuring quality and performance. <br/>
+             At Medsphere Healthcare Limited, we are driven by a commitment to excellence and innovation.
+             We strive to be a trusted partner, providing healthcare solutions that contribute to improve
+             patient outcomes and the advancement of medical practices.
+           </p>
+           <div class="why">
+                <h3 >Why Choose Medsphere Healthcare </h3>
+                <ul>
+                 <li>Genuine products from trusted manufacturers.</li>
+                 <li>CE and ISO-certified equipment.</li>
+                 <li>Technical support and training.</li>
+                 <li>Fast delivery and responsive customer service.</li>
+                 <li>Competitive pricing for healthcare institutions.</li>
+                </ul>  
+           </div>  
+                 <div class="iso">
+                     <img src="images/ce.svg" alt="Conformité Européenne (logo)">
+                     <img  src="images/iso.svg" alt="ISO-certified">
+                 </div>
+      </div>
+    </section>
+
+
+    <section class="features reveal">
+    <div class="feature" data-aos="flip-left" data-aos-duration="1000" data-aos-easing="ease-in-out">
+      <i class="fas fa-rocket " style="font-size:50px"  data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-out"></i>
+      <h2> Our Mission</h2>
+         <p><span>Medsphere</span> Healthcare Ltd is on a mission to enhance the quality of healthcare in Africa            by providing unsurpassing medical devices and healthcare solutions. We strive to be the lifeline
+            that connects medical innovation to patients care.</p>
+    </div>
+    <div class="feature" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+      <i class="fas fa-eye" style="font-size:50px;" data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-out"></i>
+      <h2> Our Vision</h2>
+      <p>We envision a future where we are the leading choice in  healthcare and our affiliated segments
+            by setting a new standard in quality customer satisfaction.</p>
+    </div>
+    <div class="feature" data-aos="flip-right" data-aos-duration="1000" data-aos-easing="ease-in-out">
+      <i class="fas fa-hands-helping " style="font-size:50px;"  data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-out"></i>
+      <h2>Values</h2>
+      <p>Quality, Innovation, Reliability, Integrity, Professionalism and Excellence — Serves as the cornerstone values 
+            of this enterprise..</p>
+    </div>
+    </section>
+
+
+    <section>
+      <div class="about-container" > 
+         <h2 class="section-title">Our Services</h2>
+         <div class="slider" id="slider">
+         <!-- Mission -->
+       <div class="slide">
+        <div class="slide-content" id="mission">
+         <h2>Consultation</h2> 
+
+         <p><span>Medsphere</span> Healthcare Ltd prioritizes customer satisfaction and delivers high-quality, patient-centered services.  
+              Our consultation process is driven by expert medical knowledge, modern technology, and genuine care — ensuring every client receives tailored advice, prompt attention, and trusted healthcare solutions. 
+        </p>
+        </div>
+
+
+      <div class="slide-image">
+        <img src="images/consultant.avif"   loading="lazy"  alt="consultation Image" />
+      </div>
+    </div>
+
+    <!-- Vision -->
+    <div class="slide">
+      <div class="slide-content" id="vision">
+       <h2>Installation & Set-up</h2>
+      <p> <span>Medsphere</span> Healthcare Ltd, we specialize in the professional installation of a wide range of medical equipment.  
+              Our team of certified biomedical engineers ensures that every device is installed with precision and maintained to meet global safety and performance standards.  
+      </p>
+      </div>
+      <div class="slide-image">
+        <img src="images/service.avif"   loading="lazy"  alt="servicing Image" />
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="slide" id="value">
+      <div class="slide-content">
+       <h2>Maintenance</h2>
+<p>
+  At <span>Medsphere</span> Healthcare Ltd, we understand that medical equipment reliability is non-negotiable.  
+  Our maintenance services are designed to prevent breakdowns, extend equipment lifespan, and ensure optimal performance across all healthcare environments.  
+</p>
+      </div>
+      <div class="slide-image">
+        <img src="images/maintenance.avif"   loading="lazy"  alt="maintenance Image" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+
+   <!-- Arrow Controls -->
+    <div class="slider-arrows">
+  <div class="arrow left-arrow" onclick="prevSlide()">&#10094;</div>
+  <div class="arrow right-arrow" onclick="nextSlide()">&#10095;</div>
+    </div>
+
+      </div>
+    </section>
+
+    <section  class="products-section" id="product">
+    <h2 class="section-title">Essential Devices</h2>
+    <div class="products-grid">
+    <!-- Product Card -->
+
+    
+     
+     <div class="product-card" data-aos="zoom-in-up" data-aos-delay="800">
+       <img src="images/UA201.png"   loading="lazy"  alt="UA-201 |Semi-Automated " />
+        <div class="overlay">
+          <button class="icon-btn" onclick="openRequestPopup('UA-201 |Semi-Automated Urine Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+          <a class="icon-btn "href ="/ua-201.html">View Product</a>
+       </div>
+        <p class="product-name"> UA-201 |Semi-Automated Urine Analyzer </p>
+     </div>
+
+     
+     <div class="product-card" data-aos="zoom-in-up" data-aos-delay="400">
+      <img src="images/SG-1.png"   loading="lazy"  alt="SG-1 | Blood Gas & Electrolyte Analyzer" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('SG-1 | Blood Gas & Electrolyte Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a  href="/sg1.html" class="icon-btn">View Product</a>
+      </div>
+      <p class="product-name"> SG-1 | Blood Gas & Electrolyte Analyzer </p>
+    </div>
+
+
+    <div class="product-card" data-aos="zoom-in-up" data-aos-delay="400">
+      <img src="images/SE1.jpg"   loading="lazy"  alt="SE1 | Electrolyte Analyzer" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('SE1 | Electrolyte Analyzer | POC Portable ISE Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn"  href ="/se1.html">View Product</a>
+      </div>
+      <p class="product-name">SE1 | Electrolyte Analyzer | POC Portable ISE Analyzer
+      </p>
+    </div>
+
+     <div class="product-card" data-aos="zoom-in-up" data-aos-delay="150">
+      <img src="images/SMT-30.jpg"   loading="lazy"  alt="smt-30 | 3-Part Auto" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('smt-30 | 3-Part Auto Hematology Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn"   href ="/smt-30.html">View Product</a>
+      </div>
+      <p class="product-name">SMT-30 | 3-Part Auto Hematology Analyzer</p>
+    </div>
+     
+     <div class="product-card" data-aos="zoom-in-up" data-aos-duration="300" >
+      <img src="images/SMT-50.png"   loading="lazy"  alt="smt-50 | 5-Part" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('smt-50 | 5-Part Auto Hematology Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn"  href ="/smt-50.html">View Product</a>
+      </div>
+      <p class="product-name">SMT-50 | 5-Part Auto Hematology Analyzer</p>
+    </div>
+
+    
+     <div class="product-card" data-aos="zoom-in-up" data-aos-duration="400" >
+      <img src="images/SMT-70.png"   loading="lazy"  alt="Medical Equipment" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('smt-70 | Semi-Auto Chemistry Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn"  href ="/smt-70.html">View Product</a>
+      </div>
+      <p class="product-name">SMT-70 | Semi-Auto Chemistry Analyzer</p>
+    </div>
+
+    <div class="product-card" data-aos="zoom-in-up" data-aos-duration="600" >
+      <img src="images/SMT-120.png"   loading="lazy"  alt="SMT-120 | Biochemistry Analyzer" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('smt-120 | Biochemistry Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn"  href ="/smt-120.html">View Product</a>
+      </div>
+      <p class="product-name">SMT-120 | Biochemistry Analyzer</p>
+    </div>
+
+     <div class="product-card" data-aos="zoom-in-up" data-aos-duration="750" >
+      <img src="images/CBS-50.webp"   loading="lazy"  alt="CBS-50 | Automatic Electrolyte Analyzer" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup('CBS-50 | Automatic Electrolyte Analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn"  href ="/cbs-50.html">View Product</a>
+      </div>
+      <p class="product-name">CBS-50 | Automatic Electrolyte Analyzer</p>
+    </div>
+
+    <div class="product-card" data-aos="zoom-in-up" data-aos-duration="550">
+      <img src="images/Dr Accu.webp"   loading="lazy"  alt="Dr Accu | Immunoassay Analyzer" />
+      <div class="overlay">
+        <button class="icon-btn" onclick="openRequestPopup(' DR-ACCU|Immunoassay analyzer')"> <i class="fas fa-cart-plus"></i> Request Quote</button>
+        <a class="icon-btn" href ="/dr-accu.html">View Product</a>
+      </div>
+      <p class="product-name"> Dr Accu | Immunoassay Analyzer </p>
+    </div>
+
+    <!-- Add more products here -->
+    </div>
+    </section>
+
+
+    <!-- Popup Form --><!-- Popup Form -->
+     <div id="requestPopup">
+  <form action="https://formspree.io/f/xovwqoze" method="POST">
+   
+
+    <!-- Hidden input for actual submission -->
+    <h1 onclick="closeRequestPopup()">&times;</h1>
+    <h3>Request <span id="productNameDisplay"></span> </h3>
+    <br>
+   <input type="hidden" name="product" id="productNameInput">
+    <input type="number" name="units" placeholder="How many units?" required><br><br>
+    <input type="text" name="fullName" placeholder="Your name" required><br><br>
+    <input type="text" name="contact" placeholder="Phone or Email" required><br><br>
+    <textarea name="address" placeholder="Your Address" required></textarea><br><br>
+
+    <button type="submit">Send Request</button>
+    <button type="button" onclick="closeRequestPopup()">Cancel</button>
+  </form>
+     </div>
+
+     
+        <section class="blog-container" id="blog">
+        <!-- Header -->
+        <header class="header">
+            <h2 class="section-title">Our Insights</h2>
+            <p>Essential resources for Nigerian clinics, laboratories, and hospitals.</p>
+        </header>
+
+        <!-- Blog Card Slider/Scroller and Dots Wrapper -->
+        <div class="slider-wrapper">
+            <div class="horizontal-slider" id="blogSlider">
+
+                <!-- Blog Post 1: Buyer's Checklist -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-1.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/checklist.jpg"
+                                 alt="Image representing a clipboard and checklist">
+                            
+                            <div class="blog-card-content">
+                                <p class="category">Procurement</p>
+                                <h2>Before You Buy: The Ultimate Medical Equipment Buyer’s Checklist for Nigerian Clinics</h2>
+                                <p>A comprehensive checklist covering crucial steps, from needs assessment to supplier vetting, tailored for Nigerian clinics...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 2: Hidden Costs -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-2.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/hidden-cost.jpg"
+                                 alt="A graphic illustrating hidden costs and budget">
+                            
+                            <div class="blog-card-content">
+                                <p class="category">Budgeting</p>
+                                <h2>7 Hidden Costs to Watch Out for When Buying Medical Equipment</h2>
+                                <p>Don't let unforeseen expenses derail your budget. Learn about common hidden costs like shipping, installation, 
+                                  and training fees...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 3: Lab Setup -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-3.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/lab-setup.jpg"
+                                 alt="Image of a small laboratory setup">
+                            
+                            <div class="blog-card-content">
+                                <p class="category">Start-Up</p>
+                                <h2>How to Set Up a Small Laboratory on a Budget — Equipment, Costs & Suppliers</h2>
+                                <p>A step-by-step guide to equipping a functional, high-quality laboratory in Nigeria without breaking the bank...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 4: Budgeting -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-4.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/budget-image.jpg"
+                                 alt="Image showing a financial spreadsheet">
+                            
+                            <div class="blog-card-content">
+                                <p class="category">Finance</p>
+                                <h2>How to Budget for Your Hospital Equipment Without Running into Debt</h2>
+                                <p>Strategic financial planning tips to acquire necessary medical gear responsibly...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 5: POCT -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-5.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/poct-image.jpg"
+                                 alt="Image of a point-of-care testing device">
+                            
+                            <div class="blog-card-content">
+                                <p class="category">Tips</p>
+                                <h2>How Point of Care Testing (POCT) Can Improve Patient Outcomes in Remote Areas</h2>
+                                <p>Exploring the role of POCT in providing rapid and reliable diagnostics in underserved Nigerian communities...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 6: Routine Maintenance -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-6.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/top-secret.jpg"
+                                 alt="Image showing maintenance">
+
+                            <div class="blog-card-content">
+                                <p class="category">Maintenance</p>
+                                <h2>The Secret to Making Your Medical Equipment Last Longer</h2>
+                                <p>Discover essential tips and best practices for the routine maintenance of medical devices...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 7: Blood Gas Analysis -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-7.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/SG-2.png"
+                                 alt="Image showing blood gas analysis equipment">
+
+                            <div class="blog-card-content">
+                                <p class="category">Diagnostics</p>
+                                <h2>Understanding Blood Gas Analysis</h2>
+                                <p> How the Seamaty Blood Gas Analyzer Helps Improve Patient Care in Nigerian Clinics...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 8:  Accurate Diagnostic Results -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-8.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/diagnostic-report.jpg"
+                                 alt="Image showing accurate diagnostic results">
+
+                            <div class="blog-card-content">
+                                <p class="category">Diagnostics</p>
+                                <h2>Ensuring Accurate Diagnostic Results</h2>
+                                <p>How Nigerian Clinics Can Maintain High-Quality Medical Testing...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Blog Post 9:   Reducing Laboratory and Clinic Turnaround Time (TAT) -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-9.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/time.jpg"
+                                 alt="Image showing a lab with TAT">
+
+                            <div class="blog-card-content">
+                                <p class="category">Diagnostics</p>
+                                <h2>Reducing Laboratory and Clinic Turnaround Time (TAT) in Nigeria</h2>
+                                <p> Tips for Faster, Reliable Results plus Strategies for improving efficiency in medical testing and diagnosis.</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                 <!-- Blog Post 10:  Quality Control (QC) and External Quality Assessment (EQA) -->
+                <div class="blog-card-wrapper">
+                    <article class="blog-card">
+                        <a href="blogs/article-10.html" tabindex="0">
+                            <!-- Placeholder Image -->
+                            <img src="images/quality-control.jpg"
+                                 alt="Image showing a lab with QC and EQA">
+
+                            <div class="blog-card-content"> 
+                                <p class="category">Diagnostics</p>
+                                <h2>Quality Control (QC) and External Quality Assessment (EQA)</h2>
+                                <p> Ensuring Reliable Lab Results in Nigerian Clinics and Laboratories...</p>
+                                <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+
+            </div>
+            <div class="slider-dots" id="sliderDots">
+                <!-- Dots populated by JavaScript -->
+            </div>
+        </div>
+        <!-- End Blog Card Slider/Scroller and Dots Wrapper -->
+        
+        <!-- Call to Action Footer -->
+        <div class="cta-footer">
+            <h3>Don't Miss Out</h3>
+            <p>Subscribe to our newsletter and get the latest insights </p>
+             <form id="newsletterForm" action="https://formspree.io/f/xovwqoze" method="POST">
+                        <input type="email" name="email" placeholder="Enter your email" required >
+
+                        <input type="hidden" class="newsletter-message-area" name="message" id="message" value="Medsphere have a new newsletter subscriber">
+
+                      
+                        <button id="Subscribe-btn" type="submit">Subscribe Now</button>
+                    </form>
+        </div>
+      </section>
+
+
+              <!-- contact -->
+      <section id="contact" class="contact-section" data-aos="fade-up">
+
+              <h2 class="section-title">Contact</h2>
+
+              <div class="msg" data-aos="zoom-in-up" data-aos-duration="400" >
+                <form data-aos="fade-right" id="contact-form"  action="https://formspree.io/f/xovwqoze" method="POST">
+                  <h3>We'd love to hear from you</h3><br>
+
+                   <!-- User's message -->
+                  <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                  <input type="tel" name="phone"  placeholder="Phone">
+
+                  <input type="text" name="email"  placeholder="Your Email Address">
+            
+
+                  <button type="submit">Send</button>
+                </form>
+
+            <div class="contact-items" >
+
+                <div class="contact-item" onclick="window.open('https://wa.me/2347049413802?text=Hello%20my%20name%20is', '_blank')" data-aos="fade-right" data-aos-duration="600">   
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp:</span>
+                    <a href="https://wa.me/2347049413802?text=Hello%20my%20name%20is" target="_blank">Chat on WhatsApp</a>
+                </div>
+
+                <div class="contact-item" onclick="window.open('mailto:customerservice@medspherehealthcare.com')" data-aos="fade-left" data-aos-duration="600" >
+                  <i class="fas fa-envelope"></i>
+                  <span>Email:</span>
+                  <a href="mailto:customerservice@medspherehealthcare.com">Customerservice@medspherehealthcare.com</a>
+                </div>
+
+
+                <div class="contact-item" onclick="window.open('tel:+2347049413802')" data-aos="fade-up" data-aos-duration="800">
+                  <i class="fas fa-phone"></i>
+                  <span>Phone:</span>
+                  <a href="tel:+2347049413802">+234 704 941 3802</a>
+                  <a href="tel:+2347049453339">+234 704 945 3339</a>
+                </div>
+            
+              </div>            
+            </div>
+
+
+        </div>
+       </section>
+
+
+      <footer class="site-footer">   
+  <div class="footer-container">
+    <!-- Partners -->
+    <div class="footer-section partner">
+      <h3>Our Partners</h3>
+      <ul>
+        <li><a href="https://www.seamaty.com" target="_blank" rel="noopener noreferrer"><img src="images/seamaty.svg" width="150px" alt="Seamaty Official Logo - Medical and Veterinary Diagnostic Systems" width="320" height="90" loading="eager"></a> </li>
+        <li> <a href="#"><img src="images/assure.svg" width="150px" alt="assure-tech  Logo - Medical and Veterinary Diagnostic Systems" width="320" height="90" loading="eager"></a></li>
+        <li class="pat">Davinny</li>
+        <li class="pat">Urinealyer</li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-section">
+      <h3>Reach Us</h3>
+      <p><strong>Email:</strong> <a href="mailto:customerservice@medspherehealthcare.com">Customerservice@medspherehealthcare.com</a></p>
+      <p><strong>Phone:</strong> +234 704 941 3802, +234 704 945 3339</p> 
+      <p><strong>Address:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Salvation+Ave,+Iju,+Lagos+101232,+Lagos"  target="_blank" 
+            rel="noopener noreferrer"> 14, Salvation Avenue Off Lucas street, Obawole, Ifako Ijaiye, Lagos, Nigeria.</a></p>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-section" id="soc">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/share/16N58SpbUS/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.LinkedIn.com/company/medsphere-healthcare/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com/medsphere_healthcare_limited/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+       
+       <div class="certificate">
+          <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="medsphere Logo" />
+       </a>
+         <img src="images/ce.svg" alt="Conformité Européenne-logo" width="80px">
+         <img src="images/iso.svg" alt="ISO-certified-logo" width="80px">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="footer-bottom">
+    <p>&copy; <span id="year">2026</span> Medsphere Healthcare Ltd  All rights reserved.</p>
+    <p style="opacity: 0;">Website designed by <small onclick="window.location.href='https://damiemegah.github.io/portfolio/#'" >DamieMegah</small></p>
+  </div>
+      </footer>
+
+     <!-- WhatsApp Floating Button -->
+     <div class="whatsapp-float" onclick="toggleChatConfirm()">
+      <i class="fab fa-whatsapp"></i>
+      <div class="chat-confirm" id="chatConfirm">Start chat?</div>
+     </div>
+
+
+    <!-- scroll up button -->
+
+     <div class="scroll-up" id="scroll-Up">
+        <i class="fas fa-caret-up"></i>
+     </div>
+
+
+  
+
+
+
+   
+        <script src="script.js"  defer></script>
+         <!-- AOS JS -->
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+      <script defer>
+       window.addEventListener("load", function(){
+        AOS.init();
+       });
+     </script>
+
+        
+
+
+
+  </body>
+</html>
