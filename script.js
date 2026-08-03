@@ -1,340 +1,561 @@
-// hamburger
+// ============================================
+// HAMBURGER MENU & NAVIGATION
+// ============================================
 
+const toggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+const hamburger = document.querySelector('.ham-menu');
 
- const toggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-    let hamburger = document.querySelector('.ham-menu');
-    
-
-    toggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
-
-    let control = document.querySelectorAll('.navs');
-     control.forEach(nav => {
-      nav.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-      });
-    });
-
-     window.onscroll = function(){
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-       
-     }
-function filterProducts() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const products = document.querySelectorAll(".product-card");
-  let anyMatch = false;
-
-  products.forEach(product => {
-    const name = product.querySelector(".product-name").textContent.toLowerCase();
-    if (name.includes(input)) {
-      product.style.display = "block"; //can be "flex" or "block"
-      anyMatch = true;
-    } else {
-      product.style.display = "none";
-    }
+if (toggle && navLinks && hamburger) {
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
   });
 
-  // If user has typed at least 1 character, scroll to the products
-  if (input.length > 0 && anyMatch) {
-    document.getElementById("product").scrollIntoView({ behavior: "smooth" });
+  // Close menu on link click
+  const navItems = navLinks.querySelectorAll('.navs, .nav-item');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      hamburger.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close menu on scroll
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    navLinks.classList.remove('active');
+    hamburger.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// ============================================
+// PRODUCT SEARCH & FILTERING
+// ============================================
+
+function filterProducts() {
+  const input = document.getElementById('searchInput');
+  if (!input) return;
+
+  const searchTerm = input.value.toLowerCase().trim();
+  const products = document.querySelectorAll('.product-card');
+  let matchCount = 0;
+
+  products.forEach(product => {
+    const name = product.querySelector('.product-name');
+    if (!name) return;
+
+    const nameText = name.textContent.toLowerCase();
+    const isMatch = nameText.includes(searchTerm);
+
+    product.style.display = isMatch ? 'block' : 'none';
+    if (isMatch) matchCount++;
+  });
+
+  // Scroll to products if match found
+  if (searchTerm.length > 0 && matchCount > 0) {
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      setTimeout(() => {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   }
 }
 
-
-
-
-     
-  //  PRODUCT
-function product() {
-  document.getElementById("product").scrollIntoView({ behavior: "smooth" });
+// Debounce search input
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+  let searchTimeout;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(filterProducts, 300);
+  });
 }
 
-   
+// ============================================
+// SERVICES SLIDER
+// ============================================
 
-
- // Service Slider variables (ensure these are global or within a closure)
 const slider = document.getElementById('slider');
-const dots = document.querySelectorAll('.dot');
+const dots = document.querySelectorAll('.dots .dot');
 let currentSlide = 0;
-let autoSlide = true;
-let slideInterval; // ADD THIS LINE to hold the interval ID
+let autoSlideEnabled = true;
+let slideInterval;
 
 function startAutoSlide() {
-    // Clear any existing interval before starting a new one
-    if (slideInterval) clearInterval(slideInterval);
-    slideInterval = setInterval(() => {
-        if (autoSlide) {
-            currentSlide = (currentSlide + 1) % 3;
-            updateSlider();
-        }
-    }, 5000);
+  if (slideInterval) clearInterval(slideInterval);
+  slideInterval = setInterval(() => {
+    if (autoSlideEnabled) {
+      currentSlide = (currentSlide + 1) % 3;
+      updateSlider();
+    }
+  }, 5000);
 }
 
 function stopAutoSlide() {
-    clearInterval(slideInterval);
+  clearInterval(slideInterval);
 }
 
 function updateSlider() {
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
+  if (!slider) return;
+  
+  slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
+  dots.forEach((dot, i) => {
+    dot.classList.remove('active');
+    dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
+  });
+  
+  if (dots[currentSlide]) {
     dots[currentSlide].classList.add('active');
+  }
 }
 
 function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-    autoSlide = false;
-    // Reset timer on manual interaction
-    stopAutoSlide();
-    setTimeout(() => autoSlide = true, 5000); // Resume auto-slide after a pause
-    startAutoSlide(); // Re-start the timer
-    
-    document.querySelector('.about-container').scrollIntoView({ behavior: 'smooth' });
+  currentSlide = index;
+  updateSlider();
+  autoSlideEnabled = false;
+  stopAutoSlide();
+  
+  setTimeout(() => {
+    autoSlideEnabled = true;
+    startAutoSlide();
+  }, 5000);
+
+  const aboutContainer = document.querySelector('.about-container');
+  if (aboutContainer) {
+    aboutContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % 3;
-    updateSlider();
-    autoSlide = false;
-    // Reset timer on manual interaction
-    stopAutoSlide();
-    setTimeout(() => autoSlide = true, 5000);
+  currentSlide = (currentSlide + 1) % 3;
+  updateSlider();
+  autoSlideEnabled = false;
+  stopAutoSlide();
+  
+  setTimeout(() => {
+    autoSlideEnabled = true;
     startAutoSlide();
+  }, 5000);
 }
 
 function prevSlide() {
-    currentSlide = (currentSlide - 1 + 3) % 3;
-    updateSlider();
-    autoSlide = false;
-    // Reset timer on manual interaction
-    stopAutoSlide();
-    setTimeout(() => autoSlide = true, 5000);
+  currentSlide = (currentSlide - 1 + 3) % 3;
+  updateSlider();
+  autoSlideEnabled = false;
+  stopAutoSlide();
+  
+  setTimeout(() => {
+    autoSlideEnabled = true;
     startAutoSlide();
+  }, 5000);
 }
 
-// Initial start of auto-slide
-startAutoSlide();
+// Initialize slider
+if (slider) {
+  startAutoSlide();
+  
+  // Pause on hover
+  slider.addEventListener('mouseenter', stopAutoSlide);
+  slider.addEventListener('mouseleave', startAutoSlide);
+}
 
+// ============================================
+// SCROLL TO TOP BUTTON
+// ============================================
+
+const scrollUpBtn = document.getElementById('scroll-Up');
+
+if (scrollUpBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollUpBtn.style.opacity = '1';
+      scrollUpBtn.style.pointerEvents = 'auto';
+    } else {
+      scrollUpBtn.style.opacity = '0';
+      scrollUpBtn.style.pointerEvents = 'none';
+    }
+  });
+
+  scrollUpBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// ============================================
+// SMOOTH SCROLL LINKS
+// ============================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+
+    e.preventDefault();
+    const target = document.querySelector(href);
     
+    if (target) {
+      // Close mobile menu if open
+      if (navLinks) {
+        navLinks.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+      }
 
- 
-  
-  
-  // Scroll to Top Button
-   window.addEventListener('scroll', () => {
-  const btn = document.getElementById('scroll-Up');
-  if (document.documentElement.scrollTop > 10) {
-    btn.style.opacity = '1';
-    btn.style.pointerEvents = 'auto';
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ============================================
+// WHATSAPP FLOATING BUTTON
+// ============================================
+
+const whatsappBtn = document.getElementById('whatsappBtn');
+const chatConfirm = document.getElementById('chatConfirm');
+let chatReady = false;
+
+function toggleChatConfirm() {
+  if (!whatsappBtn || !chatConfirm) return;
+
+  if (!chatReady) {
+    chatConfirm.classList.add('active');
+    chatReady = true;
+    whatsappBtn.setAttribute('aria-expanded', 'true');
+
+    // Hide on scroll
+    window.addEventListener('scroll', () => {
+      chatConfirm.classList.remove('active');
+      chatReady = false;
+      whatsappBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Auto hide after 5 seconds
+    setTimeout(() => {
+      chatConfirm.classList.remove('active');
+      chatReady = false;
+      whatsappBtn.setAttribute('aria-expanded', 'false');
+    }, 5000);
   } else {
-    btn.style.opacity = '0';
-    btn.style.pointerEvents = 'none'; 
+    // Open WhatsApp
+    const message = 'Hello, I would like more information about your medical equipment.';
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/2347049413802?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+    chatConfirm.classList.remove('active');
+    chatReady = false;
+  }
+}
+
+if (whatsappBtn) {
+  whatsappBtn.addEventListener('click', toggleChatConfirm);
+  whatsappBtn.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleChatConfirm();
+    }
+  });
+}
+
+// ============================================
+// PRODUCT REQUEST POPUP
+// ============================================
+
+const requestPopup = document.getElementById('requestPopup');
+
+function openRequestPopup(productName) {
+  if (!requestPopup) return;
+  
+  const productNameDisplay = document.getElementById('productNameDisplay');
+  const productNameInput = document.getElementById('productNameInput');
+  
+  if (productNameDisplay) productNameDisplay.textContent = productName;
+  if (productNameInput) productNameInput.value = productName;
+  
+  requestPopup.style.display = 'block';
+  requestPopup.setAttribute('open', '');
+  document.body.style.overflow = 'hidden';
+  
+  // Focus on first form field for accessibility
+  const firstInput = requestPopup.querySelector('input[type="number"]');
+  if (firstInput) firstInput.focus();
+}
+
+function closeRequestPopup() {
+  if (!requestPopup) return;
+  
+  requestPopup.style.display = 'none';
+  requestPopup.removeAttribute('open');
+  document.body.style.overflow = 'auto';
+}
+
+// Close popup on escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && requestPopup && requestPopup.style.display === 'block') {
+    closeRequestPopup();
   }
 });
 
-
-document.getElementById('scroll-Up').addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+// Close popup on background click
+if (requestPopup) {
+  requestPopup.addEventListener('click', (e) => {
+    if (e.target === requestPopup) {
+      closeRequestPopup();
+    }
   });
+}
+
+// ============================================
+// BLOG SLIDER
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const blogSlider = document.getElementById('blogSlider');
+  const sliderDots = document.getElementById('sliderDots');
+  const cardWrappers = blogSlider ? blogSlider.querySelectorAll('.blog-card-wrapper') : [];
+  const numCards = cardWrappers.length;
+
+  if (numCards === 0 || !sliderDots) return;
+
+  let currentIndex = 0;
+  let autoSlideInterval;
+  let isAutoSliding = true;
+  const slideDuration = 4000;
+
+  // Create dots
+  for (let i = 0; i < numCards; i++) {
+    const dot = document.createElement('button');
+    dot.classList.add('dot');
+    dot.setAttribute('data-index', i);
+    dot.setAttribute('aria-label', `Go to article ${i + 1}`);
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-selected', i === 0);
+    
+    dot.addEventListener('click', () => {
+      jumpToSlide(i);
+      pauseAutoSlide(3000);
+    });
+    
+    sliderDots.appendChild(dot);
+  }
+
+  // Show slide
+  function showSlide(index) {
+    if (index >= numCards) index = 0;
+    else if (index < 0) index = numCards - 1;
+    
+    currentIndex = index;
+
+    const targetCard = cardWrappers[currentIndex];
+    const scrollLeftPosition = targetCard.offsetLeft - blogSlider.offsetLeft;
+
+    blogSlider.scrollLeft = scrollLeftPosition;
+    updateDots(currentIndex);
+  }
+
+  // Jump to slide
+  function jumpToSlide(index) {
+    showSlide(index);
+  }
+
+  // Next slide
+  function nextSlide() {
+    if (isAutoSliding) {
+      showSlide(currentIndex + 1);
+    }
+  }
+
+  // Update dots
+  function updateDots(index) {
+    const allDots = sliderDots.querySelectorAll('.dot');
+    allDots.forEach((dot, i) => {
+      dot.classList.remove('active');
+      dot.setAttribute('aria-selected', i === index);
+    });
+    if (allDots[index]) {
+      allDots[index].classList.add('active');
+    }
+  }
+
+  // Auto slide
+  function startAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(nextSlide, slideDuration);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  function pauseAutoSlide(duration = 5000) {
+    stopAutoSlide();
+    setTimeout(startAutoSlide, duration);
+  }
+
+  // Initialize
+  showSlide(currentIndex);
+  startAutoSlide();
+
+  // Pause on hover
+  if (blogSlider) {
+    blogSlider.addEventListener('mouseenter', stopAutoSlide);
+    blogSlider.addEventListener('mouseleave', startAutoSlide);
+
+    // Pause on focus
+    cardWrappers.forEach(wrapper => {
+      const link = wrapper.querySelector('a');
+      if (link) {
+        link.addEventListener('focus', stopAutoSlide);
+        link.addEventListener('blur', startAutoSlide);
+      }
+    });
+
+    // Re-evaluate on manual scroll
+    let scrollTimeout;
+    blogSlider.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      
+      const scrollPos = blogSlider.scrollLeft;
+      const cardWidth = cardWrappers[0].offsetWidth;
+      const gap = 32; // 2rem gap
+      
+      let newIndex = Math.round(scrollPos / (cardWidth + gap));
+      
+      if (newIndex !== currentIndex) {
+        currentIndex = newIndex;
+        updateDots(currentIndex);
+        pauseAutoSlide(2500);
+      }
+    });
+  }
 });
- 
 
+// ============================================
+// FORM HANDLING
+// ============================================
 
-// Smooth scroll to sections
-  const links = document.querySelectorAll('a[href^="#"]');
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
+// Request popup form
+const requestForm = requestPopup ? requestPopup.querySelector('form') : null;
+
+if (requestForm) {
+  requestForm.addEventListener('submit', function(e) {
+    // Form will submit via formspree
+    closeRequestPopup();
+  });
+}
+
+// Newsletter form
+const newsletterForm = document.getElementById('newsletterForm');
+
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', function(e) {
+    // Let formspree handle submission
+    console.log('Newsletter subscription initiated');
+  });
+}
+
+// Contact form
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    // Let formspree handle submission
+    console.log('Contact form submitted');
+  });
+}
+
+// ============================================
+// YEAR UPDATE IN FOOTER
+// ============================================
+
+const yearElement = document.getElementById('year');
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
+
+// ============================================
+// DROPDOWN MENU KEYBOARD SUPPORT
+// ============================================
+
+document.querySelectorAll('.product, .about').forEach(menuItem => {
+  const link = menuItem.querySelector('a');
+  
+  if (link) {
+    link.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuItem.classList.toggle('is-open');
+      }
+    });
+  }
+});
+
+// Close dropdowns on escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.product, .about').forEach(item => {
+      item.classList.remove('is-open');
+    });
+  }
+});
+
+// ============================================
+// LAZY LOAD IMAGES
+// ============================================
+
+if ('IntersectionObserver' in window) {
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+        observer.unobserve(img);
       }
     });
   });
 
+  document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+}
 
+// ============================================
+// PERFORMANCE MONITORING
+// ============================================
 
-
-
-// WhatsApp Chat Confirmation
-
-  let chatReady = false;
-
-  function toggleChatConfirm() {
-    const confirmBox = document.getElementById('chatConfirm');
-
-    if (!chatReady) {
-      confirmBox.style.display = 'block';
-      chatReady = true;
-
-      // Hide on scroll
-      window.addEventListener('scroll', () => {
-        confirmBox.style.display = 'none';
-        chatReady = false;
+if ('performance' in window && 'navigation' in window.performance) {
+  window.addEventListener('load', () => {
+    const perfData = window.performance.timing;
+    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+    
+    // Send to analytics if needed
+    if (window.gtag) {
+      gtag('event', 'page_load', {
+        'load_time': pageLoadTime
       });
-
-      // Reset after 5 seconds
-      setTimeout(() => {
-        confirmBox.style.display = 'none';
-        chatReady = false;
-      }, 5000);
-    } else {
-      // OPTIONAL: get user's name from input (if you have one)
-      const nameInput = document.getElementById('userNameInput');
-      const userName = nameInput ? nameInput.value.trim() : '';
-
-      // OPTIONAL: get device name dynamically (if you have such an element)
-      const deviceElement = document.getElementById('deviceName');
-      const deviceName = deviceElement ? deviceElement.innerText.trim() : 'a device';
-
-      const message = `Hello, my name is ${userName || 'YOUR NAME'}, I want more information on "${deviceName}"`;
-
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappURL = `https://wa.me/2347049413802?text=${encodedMessage}`;
-
-      window.open(whatsappURL, '_blank');
     }
-  }
+  });
+}
 
-  
+// ============================================
+// UTILITY: SMOOTH SCROLL BEHAVIOR
+// ============================================
 
-  // Request Pop Up Form
- function openRequestPopup(productName) {
-    // Show popup
-    document.getElementById('requestPopup').style.display = 'block';
+if (!('scrollBehavior' in document.documentElement.style)) {
+  // Fallback for browsers that don't support smooth scroll
+  console.log('Smooth scroll not supported, using polyfill');
+}
 
-    // Show product name to user
-    document.getElementById('productNameDisplay').textContent = productName;
+// ============================================
+// INITIALIZATION
+// ============================================
 
-    // Pass product name to form input for submission
-    document.getElementById('productNameInput').value = productName;
-  }
-
-  function closeRequestPopup() {
-    document.getElementById('requestPopup').style.display = 'none';
-
-  }
-  
-   document.addEventListener('DOMContentLoaded', () => {
-            const slider = document.getElementById('blogSlider');
-            const dotsContainer = document.getElementById('sliderDots');
-            const cardWrappers = slider.querySelectorAll('.blog-card-wrapper');
-            const numCards = cardWrappers.length;
-            let currentIndex = 0;
-            let autoSlideInterval;
-            const slideDuration = 4000; // 4 seconds
-
-            // --- 1. Dot Generation ---
-            function createDots() {
-                for (let i = 0; i < numCards; i++) {
-                    const dot = document.createElement('span');
-                    dot.classList.add('dot');
-                    dot.setAttribute('data-index', i);
-                    dot.title = `Go to article ${i + 1}`;
-                    dot.addEventListener('click', () => {
-                        jumpToSlide(i);
-                        pauseAutoSlide(3000); // Pause for a moment after manual jump
-                    });
-                    dotsContainer.appendChild(dot);
-                }
-            }
-
-            // --- 2. Sliding Functionality ---
-            function showSlide(index) {
-                // Ensure index is within bounds (looping)
-                if (index >= numCards) {
-                    index = 0;
-                } else if (index < 0) {
-                    index = numCards - 1;
-                }
-                currentIndex = index;
-
-                // Calculate the scroll position
-                // Get the left position of the target card relative to the slider container
-                const targetCard = cardWrappers[currentIndex];
-                const scrollLeftPosition = targetCard.offsetLeft - slider.offsetLeft;
-
-                // Scroll the slider container to the target position
-                slider.scrollLeft = scrollLeftPosition;
-
-                updateDots(currentIndex);
-            }
-
-            function jumpToSlide(index) {
-                // Manually set the slide and clear the auto-slide timer
-                showSlide(index);
-            }
-
-            function nextSlide() {
-                showSlide(currentIndex + 1);
-            }
-
-            // --- 3. Dot Synchronization ---
-            function updateDots(index) {
-                const dots = dotsContainer.querySelectorAll('.dot');
-                dots.forEach(dot => dot.classList.remove('active'));
-                if (dots[index]) {
-                    dots[index].classList.add('active');
-                }
-            }
-
-            // --- 4. Auto-Slide and Interaction Management ---
-            function startAutoSlide() {
-                if (autoSlideInterval) clearInterval(autoSlideInterval);
-                autoSlideInterval = setInterval(nextSlide, slideDuration);
-            }
-
-            function stopAutoSlide() {
-                clearInterval(autoSlideInterval);
-            }
-
-            // Temporary pause function for user interaction
-            function pauseAutoSlide(duration = 5000) {
-                stopAutoSlide();
-                setTimeout(startAutoSlide, duration);
-            }
-
-            // Initial setup
-            createDots();
-            showSlide(currentIndex);
-            startAutoSlide();
-
-            // Pause on mouse interaction (hover)
-            slider.addEventListener('mouseover', stopAutoSlide);
-            slider.addEventListener('mouseout', startAutoSlide);
-
-            // Pause on keyboard interaction (focus for accessibility)
-            cardWrappers.forEach(wrapper => {
-                const link = wrapper.querySelector('a');
-                if (link) {
-                    link.addEventListener('focus', stopAutoSlide);
-                    link.addEventListener('blur', startAutoSlide);
-                }
-            });
-
-            // Re-evaluate current slide on manual scroll (e.g., using trackpad or swipe)
-            slider.addEventListener('scroll', () => {
-                const scrollPos = slider.scrollLeft;
-                const cardWidth = cardWrappers[0].offsetWidth;
-                const gap = 32; // 2rem in pixels (based on CSS gap)
-                
-                // Calculate the index based on scroll position + half of card width
-                // The scroll position should be close to the start of a card
-                let newIndex = Math.round(scrollPos / (cardWidth + gap));
-                
-                if (newIndex !== currentIndex) {
-                    currentIndex = newIndex;
-                    updateDots(currentIndex);
-                    // Temporarily pause auto-slide to respect the user's manual scroll
-                    pauseAutoSlide(2500); 
-                }
-            });
-        });
+console.log('Medsphere Healthcare - Website Loaded');
